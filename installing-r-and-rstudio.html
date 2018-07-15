@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="introduction.html">
+<link rel="next" href="introduction-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -159,32 +159,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Basic Statistics With R</h1>
-<h4 class="author"><em>Bruno Ribeiro</em></h4>
-<h4 class="date"><em>2018-07-16</em></h4>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This book is intended to cover the basic aspects of statistics, probability and inference, in association with R, a free software environment for statistical computing. It relies mostly on lecture notes from several classes on statistics, probability and data science and, for such, it intends to be somehow more simplistic and easy to understand.</p>
-<p>This book will be divided into three parts:</p>
+<div id="installing-r-and-rstudio" class="section level1 unnumbered">
+<h1>Installing R and RStudio</h1>
+<div id="installing-r" class="section level3 unnumbered">
+<h3>Installing R</h3>
+<p>As previously said, R is a free software that is available for Windows, Mac OS and UNIX/Linux. It can be downloaded from The Comprehensive R Archive Network - CRAN, but the links for each operational system are provided below.</p>
 <ul>
-<li>Probability</li>
-<li>Statistics</li>
-<li>Inference</li>
+<li>Windows: <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></li>
+<li>Mac OS: <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></li>
+<li>UNIX/Linux: <a href="https://cran.r-project.org/bin/linux/" class="uri">https://cran.r-project.org/bin/linux/</a></li>
 </ul>
-<p>Most part of this book will use problems to present the concepts and, only then, define them. For this reason, there will be several examples and exercises for each topic. But, don’t worry, all the answers and explanations can be found at the end of it.</p>
-<p>However, as it is entitled, this book is not supposed to be an exhaustive work on the subjects, but it will try to explain the concepts that will make it easier to look for additional information elsewhere.</p>
-<p>Note that, although R is used throughout this book, it will not focus on R basics. Nevertheless, the commands used here will be, somehow, explained.</p>
+<p>The installation is pretty straight forward and you shall not encounter any problem, but if you need any help, please, follow the links below.</p>
+<ul>
+<li>Windows: <a href="https://github.com/genomicsclass/windows#installing-r" class="uri">https://github.com/genomicsclass/windows#installing-r</a></li>
+<li>Mac OS: <a href="http://youtu.be/Icawuhf0Yqo" class="uri">http://youtu.be/Icawuhf0Yqo</a></li>
+<li>UNIX/Linux: <a href="http://cran.r-project.org/bin/linux/ubuntu/README" class="uri">http://cran.r-project.org/bin/linux/ubuntu/README</a></li>
+</ul>
+</div>
+<div id="installing-rstudio" class="section level3 unnumbered">
+<h3>Installing RStudio</h3>
+<p>RStudio is a integrated development environment, IDE for short, for R. It provides an organized interface so that you can clearly view graphs, data tables, R code, and output all at the same time. The download for all platforms can be found in <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a>. Note that you need to install R prior to RStudio.</p>
+<p>As R, the installation is pretty straight forward. However, for Windows users, the link provided as help for installing R also explains the steps necessary for RStudio.</p>
+</div>
+<div id="sources-for-learning-r" class="section level3 unnumbered">
+<h3>Sources for learning R</h3>
+<p>As it was said before, this is not a textbook for learning R. Although it is not required prior knowledge about it, having previous contact with the language makes things easier. Anyway, the basics to understand what is presented in this book will be explained throughout it, when needed.</p>
+<p>You can learn more about R in the following links:</p>
+<ul>
+<li><p><a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf">R for Beginners - CRAN-R - R Project</a>: It is a document created by Emmanuel Paradis that focus, as he wrote, on giving a starting point for people nearly interested in R and that emphasize on the understanding of how R works. (For those reading in PDF you can find it in: <a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf" class="uri">https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf</a>).</p></li>
+<li><p><a href="https://www.statmethods.net/r-tutorial/index.html">R Tutorial</a>: A simple and direct web tutorial for R and quite good for those who just want to learn the very basics to no get “lost” while going through this book (<a href="https://www.statmethods.net/r-tutorial/index.html" class="uri">https://www.statmethods.net/r-tutorial/index.html</a>).</p></li>
+<li><p><a href="https://bookdown.org/ndphillips/YaRrr/">YaRrr! The Pirate’s Guide to R</a>: It’s a great book, free and that is meant to introduce the basic analytical tools in R, from basic coding and analyses, to data wrangling, plotting, and statistical inference (<a href="https://bookdown.org/ndphillips/YaRrr/" class="uri">https://bookdown.org/ndphillips/YaRrr/</a>).</p></li>
+</ul>
+<p>Of course, there are some other sources that, even not being directed toward R itself, it explains the very basic concepts in a very simple way:</p>
+<ul>
+<li><p><a href="https://rafalab.github.io/dsbook/">Introduction to Data Science</a>: These are the class notes used in the HarvardX Data Science Series, written by Rafael A. Irizarry. They are very straight put and can give you a valuable insight if you’re in a hurry. Also, as it is part of a Professional Certificate Program, the classes can be accessed on <a href="https://www.edx.org/course/data-science-r-basics">edX website</a>(<a href="https://www.edx.org/course/data-science-r-basics" class="uri">https://www.edx.org/course/data-science-r-basics</a>). You can enroll for free, if you don’t want a certificate. Just need to sign up.</p></li>
+<li><p><a href="http://r4ds.had.co.nz/">R for Data Science</a>: It’s a more in-depth book, written by Garrett Grolemund and Hadley Wickham. Since it’s focused on Data Science, for those who want to learn more about R and Data Science (<a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>).</p></li>
+</ul>
 
 </div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

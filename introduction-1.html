@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="installing-r-and-rstudio.html">
+<link rel="next" href="sample-space.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -159,32 +159,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Basic Statistics With R</h1>
-<h4 class="author"><em>Bruno Ribeiro</em></h4>
-<h4 class="date"><em>2018-07-16</em></h4>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This book is intended to cover the basic aspects of statistics, probability and inference, in association with R, a free software environment for statistical computing. It relies mostly on lecture notes from several classes on statistics, probability and data science and, for such, it intends to be somehow more simplistic and easy to understand.</p>
-<p>This book will be divided into three parts:</p>
+<div id="introduction-1" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>There are two phenomena that can be found in nature:</p>
 <ul>
-<li>Probability</li>
-<li>Statistics</li>
-<li>Inference</li>
+<li>Deterministic – those for which results will not vary, it doesn’t matter how many times you repeat an experiment; and</li>
+<li>Random – those for which results cannot be predicted, it doesn’t matter how many observations you’ve made before.</li>
 </ul>
-<p>Most part of this book will use problems to present the concepts and, only then, define them. For this reason, there will be several examples and exercises for each topic. But, don’t worry, all the answers and explanations can be found at the end of it.</p>
-<p>However, as it is entitled, this book is not supposed to be an exhaustive work on the subjects, but it will try to explain the concepts that will make it easier to look for additional information elsewhere.</p>
-<p>Note that, although R is used throughout this book, it will not focus on R basics. Nevertheless, the commands used here will be, somehow, explained.</p>
-
+<p>As an example, for both cases, imagine that you’re walking down the street and it starts to rain and, as usual, you are not carrying an umbrella. With no place to take cover, you certainly get wet. Simply put, that is a deterministic event. On the other hand, when the morning news presented the weather forecast, it was said to have 80% chances of raining. But you didn’t see it cause, as usual, you were running late for work (which actually wouldn’t matter that much, if you’re like me, you’d have forgotten the umbrella anyway).</p>
+<p>Weather forecasting is an example of a random event. Based on previous knowledge, of certain parameters which we will no talk about here, you can estimate that “is possible to rain” but you can’t say that “you are sure”.</p>
+<ul>
+<li>‘What are the odds of that happening?’;</li>
+<li>‘What are the chances of winning in the lottery?’;</li>
+<li>‘Who will be the next president?’.</li>
+</ul>
+<p>Probability talks about this type of questions. It talks about the analysis of random phenomena. You can call it uncertainty, chances, percentage, proportion, likelihood… but in the end, they are all just random phenomena that we are trying to understand. In other words, probability is the long-term chance that a certain outcome will occur, given some random process. (Note that, probability consists of a number between 0 (impossibility) and 1 (total certainty) – or 0% and 100%, if you like.)</p>
+<p>Getting back to our random events, it’s important to keep in mind that even if the initial conditions are always the same, the final results of each trial will be, theoretically, different.</p>
+<p><span class="math inline">\(~\)</span></p>
+<table>
+<caption>Random experiments and outcomes</caption>
+<thead>
+<tr class="header">
+<th>Random Experiment</th>
+<th>Random Event (outcome)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Throw a coin</td>
+<td>Heads or tails</td>
+</tr>
+<tr class="even">
+<td>Throw a 6-faced die</td>
+<td>1,2,3,4,5 or 6</td>
+</tr>
+<tr class="odd">
+<td>Draw a card out of a deck</td>
+<td>2 to 10, J,Q,K or A</td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, for every random experiment there is a result called random event.</p>
+<div id="important-notes" class="section level3 unnumbered">
+<h3>Important Notes</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>Probability</strong>: Long-term chance that a certain outcome will occur, given some random process.</td>
+</tr>
+<tr class="even">
+<td><strong>Deterministic events:</strong> They are a constant. No matter how many times an experiment is repeated, the result is always the same.</td>
+</tr>
+<tr class="odd">
+<td><strong>Random experiment:</strong> It’s an experiment, or phenonema, for which we don’t know the outcome.</td>
+</tr>
+<tr class="even">
+<td><strong>Random events:</strong> It’s something unpredictable.The outcome of a random experiment.</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="installing-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-space.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

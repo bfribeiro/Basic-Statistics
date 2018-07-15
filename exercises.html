@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="fundamental-properties-of-set-operations.html">
+<link rel="next" href="important-notes-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -159,32 +159,153 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Basic Statistics With R</h1>
-<h4 class="author"><em>Bruno Ribeiro</em></h4>
-<h4 class="date"><em>2018-07-16</em></h4>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This book is intended to cover the basic aspects of statistics, probability and inference, in association with R, a free software environment for statistical computing. It relies mostly on lecture notes from several classes on statistics, probability and data science and, for such, it intends to be somehow more simplistic and easy to understand.</p>
-<p>This book will be divided into three parts:</p>
+<div id="exercises" class="section level2 unnumbered">
+<h2>Exercises</h2>
+<div id="solved-exercises" class="section level3 unnumbered">
+<h3>Solved Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Three coins are tossed. Construct the sample space and define the following events:
 <ul>
-<li>Probability</li>
-<li>Statistics</li>
-<li>Inference</li>
-</ul>
-<p>Most part of this book will use problems to present the concepts and, only then, define them. For this reason, there will be several examples and exercises for each topic. But, don’t worry, all the answers and explanations can be found at the end of it.</p>
-<p>However, as it is entitled, this book is not supposed to be an exhaustive work on the subjects, but it will try to explain the concepts that will make it easier to look for additional information elsewhere.</p>
-<p>Note that, although R is used throughout this book, it will not focus on R basics. Nevertheless, the commands used here will be, somehow, explained.</p>
+<li>same faces;</li>
+<li>heads on second coin;</li>
+<li>tails on second and third coins;</li>
+<li>heads on the first and tails in the last.</li>
+</ul></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># Let&#39;s create the coins vectors:</span>
 
+C1&lt;-<span class="kw">c</span>(<span class="st">&#39;heads&#39;</span>, <span class="st">&#39;tails&#39;</span>) 
+C2&lt;-<span class="kw">c</span>(<span class="st">&#39;heads&#39;</span>, <span class="st">&#39;tails&#39;</span>) 
+C3&lt;-<span class="kw">c</span>(<span class="st">&#39;heads&#39;</span>, <span class="st">&#39;tails&#39;</span>)
+
+<span class="co"># CREATE THE SAMPLE SPACE:</span>
+
+<span class="co"># The sample space can be created by two ways:</span>
+<span class="co"># 1 - expand.grid.</span>
+
+<span class="kw">expand.grid</span>(<span class="st">&quot;coin 1&quot;</span>=C1, <span class="st">&quot;coin 2&quot;</span>=C2, <span class="st">&quot;coin 3&quot;</span>=C3) 
+##   coin 1 coin 2 coin 3
+## 1  heads  heads  heads
+## 2  tails  heads  heads
+## 3  heads  tails  heads
+## 4  tails  tails  heads
+## 5  heads  heads  tails
+## 6  tails  heads  tails
+## 7  heads  tails  tails
+## 8  tails  tails  tails
+
+<span class="co"># You can use the expand grid to see how many rows and cols yor matrix should have.</span>
+
+<span class="co"># 2 - Our previous function</span>
+
+combine &lt;-<span class="st"> </span><span class="cf">function</span>(..., <span class="dt">prefix =</span> <span class="st">&quot;&quot;</span>, <span class="dt">suffix=</span><span class="st">&#39;&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) { <span class="co"># I added a space between </span>
+  <span class="kw">paste0</span>(prefix, <span class="kw">levels</span>(<span class="kw">interaction</span>(..., <span class="dt">sep =</span> sep)), suffix)  <span class="co"># elements and removed the </span>
+                                                               <span class="co"># parathesis</span>
+}
+
+S&lt;-<span class="kw">matrix</span>(<span class="kw">combine</span>(C1,C2,C3), <span class="dt">nrow=</span><span class="dv">8</span>, <span class="dt">ncol=</span><span class="dv">1</span>)
+S
+##      [,1]                 
+## [1,] &quot;heads, heads, heads&quot;
+## [2,] &quot;tails, heads, heads&quot;
+## [3,] &quot;heads, tails, heads&quot;
+## [4,] &quot;tails, tails, heads&quot;
+## [5,] &quot;heads, heads, tails&quot;
+## [6,] &quot;tails, heads, tails&quot;
+## [7,] &quot;heads, tails, tails&quot;
+## [8,] &quot;tails, tails, tails&quot;
+
+<span class="co"># The second approach makes the sample space more interactive when needed. Below you</span>
+<span class="co"># can see it.</span>
+
+<span class="co"># NUMBER OF EVENTS WITH THE SAME FACES:</span>
+
+hhh&lt;-<span class="kw">grep</span>(<span class="st">&quot;heads, heads, heads&quot;</span>, S) <span class="co"># grep function looks for a specific string inside a </span>
+                                    <span class="co"># vector or text. If it finds a match, it returns the</span>
+                                    <span class="co"># the position of the match, not the result. Hiwever</span>
+                                    <span class="co"># if you put value=T in the function, it returns the value.</span>
+                                  
+ttt&lt;-<span class="kw">grep</span>(<span class="st">&quot;tails, tails, tails&quot;</span>, S)
+
+<span class="co"># These are all positions of the values inside the vector or matrix.</span>
+hhh 
+## [1] 1
+ttt
+## [1] 8
+
+same_faces&lt;-<span class="kw">length</span>(hhh)<span class="op">+</span><span class="kw">length</span>(ttt) <span class="co"># We add the lengths of the vectors, so we have the total</span>
+                                    <span class="co"># value found.</span>
+
+<span class="co"># That said, the number of outcomes with same faces:</span>
+same_faces
+## [1] 2
+
+<span class="co"># HEADS IN THE FIRST COIN:</span>
+
+hxx&lt;-<span class="kw">grep</span>(<span class="st">&quot;^heads&quot;</span>, S) <span class="co"># The operator ^ indicates to fetch every string beginning with heads.</span>
+
+<span class="co"># the number of outcomes with same faces:</span>
+first_head&lt;-<span class="kw">length</span>(hxx)
+first_head
+## [1] 4
+
+<span class="co"># TAILS ON 2ND AND 3RD</span>
+
+xtt&lt;-<span class="kw">grep</span>(<span class="st">&#39;tails, tails$&#39;</span>,S) <span class="co"># The operator $ tells to fetch only values that ends with </span>
+                             <span class="co"># tails, tails.</span>
+
+<span class="co"># The number of outcomes with tails in 2nd and 3rd coin is given by:</span>
+tails_2nd_3rd&lt;-<span class="kw">length</span>(xtt)
+tails_2nd_3rd
+## [1] 2
+
+<span class="co"># HEADS ON FIRST AND TAILS ON 3RD</span>
+
+hxt&lt;-<span class="kw">grep</span>(<span class="st">&quot;^heads.*tails$&quot;</span>, S, <span class="dt">value=</span>T) <span class="co"># The combination of the operators ^ and .* tells the</span>
+                                   <span class="co"># function to fetch every value begining with heads </span>
+                                   <span class="co"># and ending with tails. </span>
+
+<span class="co"># Since the option value=T was inserted in the function above, hxt will return the values </span>
+<span class="co"># requested. It was just to show how it works.</span>
+hxt
+## [1] &quot;heads, heads, tails&quot; &quot;heads, tails, tails&quot;
+
+<span class="co"># The number of events with heads on 1st and tails on 3rd:</span>
+<span class="kw">length</span>(hxt)
+## [1] 2</code></pre></div>
+</div>
+<div id="proposed-exercises" class="section level3 unnumbered">
+<h3>Proposed Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Given the birth of 3 children, considering their sex, define the following events
+<ul>
+<li>two children of the same sex;</li>
+<li>at least one male child;</li>
+<li>no more than two female children</li>
+</ul></li>
+</ol>
+<p><span class="math inline">\(~\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Considering <span class="math inline">\(A, B\)</span> and <span class="math inline">\(C\)</span> as events of a sample space <span class="math inline">\(S\)</span>, define the events below using the set operations you previously learned.
+<ul>
+<li>only <span class="math inline">\(A\)</span> happens;</li>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> happens but not <span class="math inline">\(B\)</span>;</li>
+<li>All events happen;</li>
+<li>At least one event happens;</li>
+<li>No event happens;</li>
+<li>No more than two events happen.</li>
+</ul></li>
+</ol>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fundamental-properties-of-set-operations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="important-notes-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

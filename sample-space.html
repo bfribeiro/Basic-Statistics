@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="introduction-1.html">
+<link rel="next" href="power-set.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -159,32 +159,87 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Basic Statistics With R</h1>
-<h4 class="author"><em>Bruno Ribeiro</em></h4>
-<h4 class="date"><em>2018-07-16</em></h4>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This book is intended to cover the basic aspects of statistics, probability and inference, in association with R, a free software environment for statistical computing. It relies mostly on lecture notes from several classes on statistics, probability and data science and, for such, it intends to be somehow more simplistic and easy to understand.</p>
-<p>This book will be divided into three parts:</p>
-<ul>
-<li>Probability</li>
-<li>Statistics</li>
-<li>Inference</li>
-</ul>
-<p>Most part of this book will use problems to present the concepts and, only then, define them. For this reason, there will be several examples and exercises for each topic. But, don’t worry, all the answers and explanations can be found at the end of it.</p>
-<p>However, as it is entitled, this book is not supposed to be an exhaustive work on the subjects, but it will try to explain the concepts that will make it easier to look for additional information elsewhere.</p>
-<p>Note that, although R is used throughout this book, it will not focus on R basics. Nevertheless, the commands used here will be, somehow, explained.</p>
+<div id="sample-space" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Sample Space</h1>
+<p>When you toss a coin, there are two possible results: heads or tails. A die roll has six possible outcomes: 1,2,3,4,5 or 6. These sets correspond to every possible outcome for these both experiments.This is what we call Sample Space.</p>
+<p>A sample space is simply the set of all possible outcomes of an experiment. It may be defined as:<span class="math inline">\(\ \Omega \)</span> or S.In this book, we will always be denoted as S.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Constructing a sample space for a coin and a die:</span>
 
+S&lt;-<span class="kw">c</span>(<span class="st">&#39;Head&#39;</span>, <span class="st">&#39;Tails&#39;</span>) <span class="co">#These are de possible outcomes of a coin toss we attribute to </span>
+<span class="co">#variable &#39;S&#39;. Note that if you specify multiple results you need to put c(&#39;value1&#39;, </span>
+<span class="co">#&#39;value2&#39;,&#39;value...). </span>
+<span class="co">#Text should always be between &#39;&#39;.</span>
+S <span class="co">#This prints the variable &#39;S&#39; value to the screen.</span></code></pre></div>
+<pre><code>## [1] &quot;Head&quot;  &quot;Tails&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">S&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>) <span class="co">#Attributing the sample space for a die. Note that when we assign the new </span>
+<span class="co">#value to the variable &#39;S&#39;, its previous value is &#39;erased&#39;.</span>
+S</code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<p>Keep in mind that a random event can be a single outcome or several outcomes.</p>
+<p>As an example, consider that two dice are rolled and describe the following events:</p>
+<ol style="list-style-type: lower-alpha">
+<li>same faces</li>
+<li>faces which the sum is equal to 10.</li>
+<li>faces which the sum is less than 2.</li>
+<li>faces which the sum is less than 15.</li>
+</ol>
+<p>First, let’s describe all the possible outcomes of a two dice roll:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d1&lt;-<span class="dv">1</span><span class="op">:</span><span class="dv">6</span> <span class="co">#Dice 1</span>
+d2&lt;-<span class="dv">1</span><span class="op">:</span><span class="dv">6</span> <span class="co">#Dice 2</span>
+
+combine &lt;-<span class="st"> </span><span class="cf">function</span>(..., <span class="dt">prefix =</span> <span class="st">&quot;(&quot;</span>, <span class="dt">suffix=</span><span class="st">&#39;)&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>) {
+  <span class="kw">paste0</span>(prefix, <span class="kw">levels</span>(<span class="kw">interaction</span>(..., <span class="dt">sep =</span> sep)), suffix)
+} <span class="co">#This function is meant to create a cartesian product between the two dice.</span>
+
+D&lt;-<span class="kw">matrix</span>(<span class="kw">combine</span>(d1,d2), <span class="dt">nrow=</span><span class="dv">6</span>, <span class="dt">ncol=</span><span class="dv">6</span>)<span class="co">#This will create a 6x6 matrix with all possible</span>
+                                         <span class="co">#results for the dice combination.</span>
+
+<span class="co">#Both lines below are just to rename the matrix columns and rows as 1,2,3,4,5,6 </span>
+<span class="co">#(number of faces of each die)</span>
+<span class="kw">colnames</span>(D)&lt;-d1
+<span class="kw">rownames</span>(D)&lt;-d2
+D</code></pre></div>
+<pre><code>##   1       2       3       4       5       6      
+## 1 &quot;(1,1)&quot; &quot;(1,2)&quot; &quot;(1,3)&quot; &quot;(1,4)&quot; &quot;(1,5)&quot; &quot;(1,6)&quot;
+## 2 &quot;(2,1)&quot; &quot;(2,2)&quot; &quot;(2,3)&quot; &quot;(2,4)&quot; &quot;(2,5)&quot; &quot;(2,6)&quot;
+## 3 &quot;(3,1)&quot; &quot;(3,2)&quot; &quot;(3,3)&quot; &quot;(3,4)&quot; &quot;(3,5)&quot; &quot;(3,6)&quot;
+## 4 &quot;(4,1)&quot; &quot;(4,2)&quot; &quot;(4,3)&quot; &quot;(4,4)&quot; &quot;(4,5)&quot; &quot;(4,6)&quot;
+## 5 &quot;(5,1)&quot; &quot;(5,2)&quot; &quot;(5,3)&quot; &quot;(5,4)&quot; &quot;(5,5)&quot; &quot;(5,6)&quot;
+## 6 &quot;(6,1)&quot; &quot;(6,2)&quot; &quot;(6,3)&quot; &quot;(6,4)&quot; &quot;(6,5)&quot; &quot;(6,6)&quot;</code></pre>
+<p>From the matrix above you can see that there are 36 possible combinations as outcomes for rolling two dice. Once the matrix is ready, we can count the the requested outcomes.</p>
+<ol style="list-style-type: lower-alpha">
+<li>same faces</li>
+</ol>
+<p><span class="math inline">\(\ A = \)</span>{<span class="math inline">\((1,1), (2,2), (3,3), (4,4), (5,5),(6,6)\)</span>}</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>faces which the sum is equal to 10.</li>
+</ol>
+<p><span class="math inline">\(\ B = \)</span>{<span class="math inline">\((4,6), (5,5), (6,4)\)</span>}</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>faces which the sum is less than 2.</li>
+</ol>
+<p><span class="math inline">\(C= \Phi \)</span> - (impossible event)</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>faces which the sum is less than 15.</li>
+</ol>
+<p><span class="math inline">\(D= (S)\)</span> - (certain event)</p>
+<p>There are two things to be noted in the itens above:</p>
+<ol style="list-style-type: decimal">
+<li><p>It’s impossible to pick up two faces which the sum is less than 2. It happens because the minor value possible for each die is 1, so the minor sum possible is 2. So the number of combinations that satisfies the question is 0.</p></li>
+<li><p>Pick up two faces which the sum is less than 15, is equal to the sample space S. That happens because the sum can be bigger than 12, so all the combinations will be inside this range.</p></li>
+</ol>
+<p>As it was mentioned before, probability consists of a number between 0 (impossibility) and 1 (total certainty) – or 0% and 100%.</p>
+<center>
+<span class="math inline">\(P=(0 \leq X \leq 1)\)</span>
+</center> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="power-set.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
