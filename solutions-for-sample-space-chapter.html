@@ -161,7 +161,127 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="solutions-for-sample-space-chapter" class="section level1 unnumbered">
 <h1>Solutions for Sample Space Chapter</h1>
+<div id="exercise-1" class="section level4 unnumbered">
+<h4>Exercise 1</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># Let&#39;s build the sample space.</span>
 
+child_<span class="dv">1</span>&lt;-<span class="kw">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>)
+child_<span class="dv">2</span>&lt;-<span class="kw">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>)
+child_<span class="dv">3</span>&lt;-<span class="kw">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;F&quot;</span>)
+
+S&lt;-<span class="kw">expand.grid</span>(<span class="st">&#39;Child 1&#39;</span>=child_<span class="dv">1</span>,<span class="st">&#39;Child 2&#39;</span>=child_<span class="dv">2</span>,<span class="st">&#39;Child 3&#39;</span>=child_<span class="dv">3</span>)
+
+<span class="co"># I did this answer using only the expand.grid function so you can see another way of</span>
+<span class="co"># constructig the sample space. Since the sample space is small, you can simply count</span>
+<span class="co"># the possibilities.</span>
+
+S
+##   Child 1 Child 2 Child 3
+## 1       M       M       M
+## 2       F       M       M
+## 3       M       F       M
+## 4       F       F       M
+## 5       M       M       F
+## 6       F       M       F
+## 7       M       F       F
+## 8       F       F       F
+
+
+<span class="co"># TWO CHILDREN OF THE SAME SEX</span>
+
+<span class="co"># You can grep the subsets of S that satisfy your conditions using the grepl function</span>
+<span class="co"># For two males there the following combinations:</span>
+
+<span class="kw">subset</span>(S, <span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 1</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 2</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 3</span><span class="st">`</span>))
+##   Child 1 Child 2 Child 3
+## 5       M       M       F
+<span class="kw">subset</span>(S, <span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 1</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 2</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 3</span><span class="st">`</span>))
+##   Child 1 Child 2 Child 3
+## 3       M       F       M
+<span class="kw">subset</span>(S, <span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 1</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 2</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 3</span><span class="st">`</span>))
+##   Child 1 Child 2 Child 3
+## 2       F       M       M
+
+<span class="co"># For two females there the following combinations:</span>
+
+<span class="kw">subset</span>(S, <span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 1</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 2</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 3</span><span class="st">`</span>))
+##   Child 1 Child 2 Child 3
+## 4       F       F       M
+<span class="kw">subset</span>(S, <span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 1</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 2</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 3</span><span class="st">`</span>))
+##   Child 1 Child 2 Child 3
+## 6       F       M       F
+<span class="kw">subset</span>(S, <span class="kw">grepl</span>(<span class="st">&quot;M&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 1</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 2</span><span class="st">`</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">grepl</span>(<span class="st">&quot;F&quot;</span>, S<span class="op">$</span><span class="st">`</span><span class="dt">Child 3</span><span class="st">`</span>))
+##   Child 1 Child 2 Child 3
+## 7       M       F       F
+
+<span class="co"># As you can see, there are three possibilities for each, so there 6 possilities of two</span>
+<span class="co"># children have the same sex.</span>
+
+<span class="co"># If you prefer to use the function we created:</span>
+
+combine &lt;-<span class="st"> </span><span class="cf">function</span>(..., <span class="dt">prefix =</span> <span class="st">&quot;&quot;</span>, <span class="dt">suffix=</span><span class="st">&#39;&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) {
+  <span class="kw">paste0</span>(prefix, <span class="kw">levels</span>(<span class="kw">interaction</span>(..., <span class="dt">sep =</span> sep)), suffix)
+}
+
+S&lt;-<span class="kw">matrix</span>(<span class="kw">combine</span>(<span class="st">&#39;Child 1&#39;</span>=child_<span class="dv">1</span>,<span class="st">&#39;Child 2&#39;</span>=child_<span class="dv">2</span>,<span class="st">&#39;Child 3&#39;</span>=child_<span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">8</span>, <span class="dt">ncol=</span><span class="dv">1</span>)
+
+<span class="co"># You can use the grep function, as we did in through the chapter</span>
+<span class="kw">grep</span>(<span class="st">&quot;M, M, F&quot;</span>, S, <span class="dt">value=</span>T)
+## [1] &quot;M, M, F&quot;
+<span class="kw">grep</span>(<span class="st">&quot;M, F, M&quot;</span>, S, <span class="dt">value=</span>T)
+## [1] &quot;M, F, M&quot;
+<span class="kw">grep</span>(<span class="st">&quot;M, F, M&quot;</span>, S, <span class="dt">value=</span>T)
+## [1] &quot;M, F, M&quot;
+
+<span class="co"># Repeat the same for the female.</span>
+
+<span class="co"># Or, you can use the grepl function inside the sum function.</span>
+<span class="co"># grepl provides a logical result. True or False. True is equivalent to 1, so whe  you</span>
+<span class="co"># sum, it will count the True values and add them up.</span>
+
+<span class="kw">sum</span>(<span class="kw">c</span>(<span class="kw">grepl</span>(<span class="st">&quot;M, M, F&quot;</span>, S), <span class="kw">grepl</span>(<span class="st">&quot;M, F, M&quot;</span>, S), <span class="kw">grepl</span>(<span class="st">&quot;F, M, M&quot;</span>, S)),
+      <span class="kw">grepl</span>(<span class="st">&quot;F, F, M&quot;</span>, S), <span class="kw">grepl</span>(<span class="st">&quot;F, M, F&quot;</span>, S), <span class="kw">grepl</span>(<span class="st">&quot;M, F, F&quot;</span>, S))
+## [1] 6
+
+<span class="co"># AT LEAST ONE MALE CHILD</span>
+
+<span class="co"># Here we can use the properties we learned. To have at least one male child means that </span>
+<span class="co"># I can&#39;t have three female children. So you can use the complement function. If I</span>
+<span class="co"># can&#39;t have three female children, then everything that is not three female children</span>
+<span class="co"># satisfies the condition.</span>
+
+<span class="co"># We can use setdiff:</span>
+
+<span class="kw">length</span>(<span class="kw">setdiff</span>(S,<span class="st">&#39;F, F, F&#39;</span>))
+## [1] 7
+
+<span class="co"># Or we can use grepl:</span>
+
+<span class="kw">sum</span>(<span class="op">!</span><span class="kw">grepl</span>(<span class="st">&quot;F, F, F&quot;</span>, S)) 
+## [1] 7
+<span class="co"># New operator here. Using ! before grepl, I&#39;m telling it that I want everything that is</span>
+<span class="co"># not &quot;F, F, F&quot;.</span>
+
+<span class="co"># NO MORE THAN TWO FEMALE CHILDREN</span>
+
+<span class="co"># No more than two female means that everything that is not &quot;F, F, F&quot; is the answer. So it&#39;s</span>
+<span class="co"># exactly the same answer that AT LEAST ONE MALE CHILD.</span></code></pre></div>
+</div>
+<div id="exercise-2" class="section level4 unnumbered">
+<h4>Exercise 2</h4>
+<p>There is no calculation in this exercise. It’s all theory answers:</p>
+<ul>
+<li>only <span class="math inline">\(A\)</span> happens: <span class="math inline">\(A \cap B^{c} \cap C^{c}\)</span></li>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> happens but not <span class="math inline">\(B\)</span>: <span class="math inline">\(A \cap C \cap B^{c}\)</span></li>
+<li>All events happen: <span class="math inline">\(A \cap B \cap C\)</span></li>
+<li>At least one event happens: <span class="math inline">\(A \cup B \cup C\)</span></li>
+<li>No event happens:<span class="math inline">\(A^{c} \cap B^{c} \cap C^{c}\)</span></li>
+<li>Exactly one event happen:<span class="math inline">\((A \cap B^{c} \cap C^{c}) \cup (A^{c} \cap B \cap C^{c}) \cup (A^{c} \cap B^{c} \cap C)\)</span></li>
+<li>No more than two events happen: <span class="math inline">\((A \cap B \cap C)^{c}\)</span></li>
+</ul>
+
+</div>
 </div>
             </section>
 
